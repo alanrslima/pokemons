@@ -8,7 +8,7 @@ interface Input extends TextInputProps {
 export const Input: React.FC<Input> = ({ label, ...rest }) => {
   return (
     <Container>
-      <Label>label</Label>
+      <Label>{label}</Label>
       <InputText {...rest} />
     </Container>
   );

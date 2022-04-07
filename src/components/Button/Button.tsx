@@ -1,12 +1,16 @@
 import React from "react";
-import { Text, TouchableOpacity, View } from "react-native";
 
-// import { Container } from './styles';
+import { Container, Title, Loading } from "./Button.style";
 
-export const Button: React.FC = () => {
+interface IButton {
+  onPress?: () => void;
+  title?: string;
+  loading?: boolean;
+}
+export const Button: React.FC<IButton> = ({ onPress, title, loading }) => {
   return (
-    <TouchableOpacity>
-      <Text>label</Text>
-    </TouchableOpacity>
+    <Container onPress={onPress}>
+      {loading ? <Loading /> : <Title>{title}</Title>}
+    </Container>
   );
 };

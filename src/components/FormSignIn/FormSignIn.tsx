@@ -1,32 +1,37 @@
+import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { Button, TextInput, View } from "react-native";
 import { useSignIn } from "../../hooks/useSignIn";
-import { useSignOut } from "../../hooks/useSignOut";
+import { Button } from "../Button/Button";
 import { Input } from "../Input/Input";
-
-// import { Container } from './styles';
+import { Label, WrapperSignUpMessage, LabelButton } from "./FormSignIn.style";
 
 export const FormSignIn: React.FC = () => {
   const { email, password, setEmail, setPassword, handleSignIn } = useSignIn();
 
-  const { handleSignOut } = useSignOut();
+  const navigation = useNavigation();
 
   return (
-    <View>
+    <>
       <Input
         value={email}
         onChangeText={setEmail}
+        label="E-mail"
         keyboardType="email-address"
       />
-      <Input value={password} onChangeText={setPassword} secureTextEntry />
-      {/* <TextInput placeholder="Email" value={email} onChangeText={setEmail} />
-      <TextInput
-        placeholder="Senha"
+      <Input
         value={password}
+        label="Senha"
         onChangeText={setPassword}
-      /> */}
+        secureTextEntry
+      />
       <Button title="Logar" onPress={handleSignIn} />
-      <Button title="Logout" onPress={handleSignOut} />
-    </View>
+
+      <WrapperSignUpMessage>
+        <Label>
+          Ainda não possui um conta?{" "}
+          <LabelButton onPress={() => {}}>Cadastre-se agora</LabelButton>
+        </Label>
+      </WrapperSignUpMessage>
+    </>
   );
 };

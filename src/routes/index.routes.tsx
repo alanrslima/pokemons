@@ -1,17 +1,11 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { SignIn } from "../pages/SignIn/SignIn";
-import { SignUp } from "../pages/SignUp/SignUp";
-import { Pokemons } from "../pages/Pokemons/Pokemons";
 import { useDispatch, useSelector } from "react-redux";
 import { StoreStateProps } from "../store/createStore";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { onSignIn, onSignOut } from "../store/modules/session/actions";
 import { GuestRoutes } from "./guest.routes";
 import { LoggedRoutes } from "./logged.routes";
-
-const Stack = createNativeStackNavigator();
 
 export const Routes = () => {
   const dispatch = useDispatch();
