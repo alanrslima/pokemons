@@ -1,30 +1,29 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
-
-// import { Container } from './styles';
 
 export const useSignUp = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState<any>();
 
   const handleSignup = async () => {
+    setLoading(true);
+    setError(undefined);
     try {
-      setLoading(true);
-      // TODO: Verificação dos dados de input
       const auth = getAuth();
       await createUserWithEmailAndPassword(auth, email, password);
-      console.log("Usuario criado com sucesso");
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
       setLoading(false);
-    } catch (error) {
-      // TODO: caso de erro
-      console.log(error);
     }
   };
 
   return {
     loading,
+    error,
     email,
     setEmail,
     password,

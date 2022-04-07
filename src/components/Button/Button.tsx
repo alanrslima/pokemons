@@ -6,10 +6,16 @@ interface IButton {
   onPress?: () => void;
   title?: string;
   loading?: boolean;
+  disabled?: boolean;
 }
-export const Button: React.FC<IButton> = ({ onPress, title, loading }) => {
+export const Button: React.FC<IButton> = ({
+  onPress,
+  title,
+  loading,
+  disabled,
+}) => {
   return (
-    <Container onPress={onPress}>
+    <Container disabled={disabled} onPress={onPress}>
       {loading ? <Loading /> : <Title>{title}</Title>}
     </Container>
   );

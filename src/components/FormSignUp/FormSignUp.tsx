@@ -1,6 +1,8 @@
 import React from "react";
-import { Button, TextInput, View } from "react-native";
 import { useSignUp } from "../../hooks/useSignUp";
+import { BoxAlert } from "../BoxAlert/BoxAlert";
+import { Button } from "../Button/Button";
+import { Input } from "../Input/Input";
 
 export const FormSignUp: React.FC = () => {
   const {
@@ -11,22 +13,42 @@ export const FormSignUp: React.FC = () => {
     setPassword,
     setConfirmPassword,
     handleSignup,
+    loading,
+    error,
   } = useSignUp();
 
+  const buttonDisabled =
+    !email.length || !password.length || !confirmPassword.length;
+
   return (
-    <View>
-      <TextInput placeholder="Email" onChangeText={setEmail} value={email} />
-      <TextInput
-        placeholder="Senha"
-        onChangeText={setPassword}
+    <>
+      <Input
+        value={email}
+        onChangeText={setEmail}
+        label="E-mail"
+        keyboardType="email-address"
+      />
+      <Input
         value={password}
+        label="Senha"
+        onChangeText={setPassword}
+        secureTextEntry
       />
-      <TextInput
-        placeholder="Confirme sua senha"
-        onChangeText={setConfirmPassword}
+      <Input
         value={confirmPassword}
+        label="Confirme sua senha"
+        onChangeText={setConfirmPassword}
+        secureTextEntry
       />
-      <Button title="Cadastrar" onPress={handleSignup} />
-    </View>
+
+      {error && <BoxAlert message={error} />}
+
+      <Button
+        disabled={buttonDisabled}
+        title="Cadastrar"
+        loading={loading}
+        onPress={handleSignup}
+      />
+    </>
   );
 };

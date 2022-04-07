@@ -19,6 +19,7 @@ export const Pokemons: React.FC = () => {
     });
   }, [navigation]);
 
+  // TODO: Include pagination
   return (
     <Container>
       <List

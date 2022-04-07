@@ -14,14 +14,9 @@ export const useSignOut = () => {
   const handleSignOut = async () => {
     try {
       const auth = getAuth();
-      const userAuth = await signOut(auth);
-
-      // Salvar dados do usuário no redux
+      await signOut(auth);
       dispatch(onSignOut());
-      console.log("Signout feito com succeso", userAuth);
-    } catch (error) {
-      console.log("Erro", error);
-    }
+    } catch (error) {}
   };
 
   return {
