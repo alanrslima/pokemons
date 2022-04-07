@@ -4,7 +4,7 @@
 
 ## Introduction
 
-A simple open source app created to simulate a signup, signin flow and list pokemnos using a public API.
+A simple open source app created to simulate a signup, signin flow using Firebase Auth and list pokemons using a public API.
 
 ---
 
